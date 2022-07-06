@@ -5,19 +5,23 @@ console.log("Welcome to Currency Converter!");
 for (const currency in currencies) {
   console.log(`1 USD equals  ${currencies[currency]} ${currency}`);  
 }
-console.log("I can convert USD to these currencies: JPY, EUR, RUB, USD, GBP");
-console.log("Type the currency you wish to convert: USD");
+console.log("What do you want to convert?");
 
-let currency  = input("To:").toUpperCase();
-if (currencies[currency] === undefined) {
+let currencyFrom = input("From:").toUpperCase();
+if (currencies[currencyFrom] === undefined) {
   console.log("Unknown currency");
 } else {
-  let amount = Number(input("Amount:"));
-  if (isNaN(amount)) {
-    console.log("The amount has to be a number");
-  } else if (amount < 1) {
-    console.log("The amount can not be less than 1.");
+  let currencyTo  = input("To:").toUpperCase();
+  if (currencies[currencyTo] === undefined) {
+    console.log("Unknown currency");
   } else {
-  console.log(`Result: ${amount} USD equals ${(currencies[currency] * amount).toFixed(4)} ${currency}`);
+      let amount = Number(input("Amount:"));
+      if (isNaN(amount)) {
+          console.log("The amount has to be a number");
+      } else if (amount < 1) {
+          console.log("The amount can not be less than 1.");
+      } else {
+          console.log(`Result: ${amount} ${currencyFrom} equals ${(amount / currencies[currencyFrom] * currencies[currencyTo]).toFixed(4)} ${currencyTo}`);
+    }
   }
 }
